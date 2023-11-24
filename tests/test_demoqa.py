@@ -3,12 +3,12 @@ import os
 
 
 def test_registration_form():
-    browser.open('/')
+    browser.open('/automation-practice-form')
     browser.element('#firstName').should(be.blank).type('Ivanna')
     browser.element('#lastName').should(be.blank).type('Ivanova')
-    browser.element('#userEmail').should(be.blank).type('ivanova@gamail.com')
+    browser.element('#userEmail').should(be.blank).type('ivanova@gmail.com')
     browser.element('#gender-radio-2').double_click()
-    browser.element('#userNumber').should(be.blank).type('123456789100')
+    browser.element('#userNumber').should(be.blank).type('1234567891')
     browser.element('#dateOfBirthInput').click()
     browser.element('.react-datepicker__month-select').click()
     browser.element('[value="3"]').click()
@@ -22,13 +22,15 @@ def test_registration_form():
     browser.element('#react-select-3-input').type('NCR').press_enter()
     browser.element('#react-select-4-input').type('Delhi').press_enter()
     browser.element('#submit').press_enter()
-    browser.element('.table-responsive').should(have.text(
-        'Ivanna Ivanova' and
-        'ivanova@gamail.com' and
-        'Female' and
-        '123456789100' and
-        '01 April,1990' and
-        'Reading' and
-        'p.jpg' and
-        '16th Street' and
-        'NCR Delhi'))
+    browser.element('.table-responsive').should(
+        have.text('Ivanna Ivanova')
+        .and_(have.text('ivanova@gmail.com'))
+        .and_(have.text('Female'))
+        .and_(have.text('1234567891'))
+        .and_(have.text('01 April,1990'))
+        .and_(have.text('English'))
+        .and_(have.text('Reading'))
+        .and_(have.text('p.jpg'))
+        .and_(have.text('16th Street'))
+        .and_(have.text('NCR Delhi'))
+    )
